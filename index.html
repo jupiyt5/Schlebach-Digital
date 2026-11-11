@@ -6,11 +6,418 @@
     <title>Schlebach Digital</title>
     <style>
         body {
-        background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e293b;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .vip_button {
+          justify-items: left;
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+                .vip_button button {
+          padding: 0.7rem 1rem;
+          background-color: #444;
+          color: #fff;
+          border: 0;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+        
+        .vip_button button:hover {
+          background-color: #555;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+        
+        nav a {
+            color: #fff;
+            padding: 1rem;
+            text-decoration: none;
+        }
+        
+        nav a:hover {
+            background-color: #555;
+        }
+
+        a {
+            color: #f1f5f9;
+            text-decoration: none;
+        }
+        
+        main {
+          flex: 1;
+        }
+        
+        #home, #services, #contact {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .home_h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        #justus_image {
+            max-width: 200px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        /*Zum anordnen der Kacheln*/
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 2rem;
+            grid-template-areas:
+                "card1 image card2";
+        }
+
+        /*Kachel-Design*/
+        .small-card {
+          background-color: #333;
+          border: 4px solid #222;
+          color: #f1f5f9;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          padding: 2rem;
+          display: flex;
+          align-items: flex-start;
+          height: 215px;
+          margin-top: -5px;
+          font-size: 1.39rem;
+          text-align: left;
+        }
+
+        #small-card-1 {
+          grid-area: card1;
+          align-items: center;
+        }
+
+        #justus_image {
+          grid-area: image;
+        }
+
+        #small-card-2 {
+          grid-area: card2;
+        }
+
+        .heading {
+          color: #f1f5f9;
+          text-align: center;
+          margin-bottom: 2rem;
+        }
+
+        .about_grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+        }
+
+        .big_card {
+          background-color: #333;
+          border: 4px solid #222;
+          color: #f1f5f9;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          padding: 2rem;
+          font-size: 1.39rem;
+          text-align: center;
+        }
+
+        .foto_card {
+            background-color: #333;
+            border: 4px solid #222;
+            color: #f1f5f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .foto_card img {
+            max-width: 50%;
+            /*aspect-ratio: 4 / 3;*/
+            object-fit: cover;
+            /*border-radius: 8px;*/
+        }
+
+        .einführung {
+          background-color: #333;
+          border: 4px solid #222;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          padding: 2rem;
+          max-width: 800px;
+          margin: 0 auto 2rem;
+          color: #f1f5f9;
+          text-align: center;
+        }
+
+        .projekt_grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+        }
+
+        .projekt {
+          background-color: #333;
+          border: 4px solid #222;
+          color: #f1f5f9;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          padding: 2rem;
+          font-size: 1rem;
+          text-align: center;
+        }
+
+        .projekt-bilder {
+          margin-top: 1.5rem;
+        }
+
+        .projekt-bilder img {
+          display: block;
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          object-fit: cover;
+          border-radius: 6px;
+        }
+
+        .projekt-bild-haupt {
+          max-width: 500px;
+          margin: 0 auto 1rem;
+        }
+
+        .projekt-bilder-unten {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1rem;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            width: 100%;
+        }
+
+        .copyright {
+          text-align: left;
+          margin-left: 1rem;
+        }
+
+        .legal-links {
+          text-align: right;
+          margin-right: 1rem;
+        }
+
+        .vip-dialog {
+          color: #f1f5f9;
+          background-color: #333;
+          border: 4px solid #222;
+          border-radius: 8px;
+          padding: 2rem;
+          max-width: 500px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          text-align: center;
+        }
+
+        /*.vip-dialog h2 p {
+        }*/
+        
+        .vip-dialog::backdrop {
+          background: rgba(0, 0, 0, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "image"
+                    "card1"
+                    "card2";
+                gap: 2rem;
+                justify-items: center;
+            }
         }
     </style>
 </head>
 <body>
-    
+    <header>
+        <div>
+          <h1>Schlebach Digital</h1>
+        </div>
+        <div class="vip_button" id="vip_button">
+          <button type="button" id="vip-open">VIP Access</button>
+        </div>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#über_mich">Über mich</a>
+        <a href="#projekte">Projekte</a>
+        <a href="#contact">Kontakt</a>
+    </nav>
+    <main>
+        <section id="home">
+            <div class="grid">
+              <!-- Kachel 1 -->
+              <div class="small-card" id="small-card-1">
+                <div class="card-content">
+                  <ul id="personalinformation">
+                    <li>Justus Schlebach</li>
+                    <li>Geboren am 28.05.2004</li>
+                    <li>Hobbys: Programmieren/Webdesign, Gaming, YouTube</li>
+                    <li>Interessen: Programmiersprachen,<br>Feuerwehr,  Drehbücher schreiben</li>
+                  </ul>
+                </div>
+              </div>
+
+              <img src="Justus_Schlebach.jpg" id="justus_image" alt="Justus_Schlebach">
+
+              <!-- Kachel 2 -->
+              <div class="small-card" id="small-card-2">
+                <div class="card-content">
+                  <p id="about_fließtext">Hi, mein Name ist Justus Schlebach. Ich bin 22 Jahre alt. Ich wurde am 28.05.2004 in München geboren.
+                    Aktuell habe ich keinen gültigen Abschluss, befinde mich jedoch in der Ausbildung zum Einzelhandelskaufmann.</p>
+                </div>
+              </div>
+            </div>
+        </section>
+        <section id="über_mich">
+          <div class="heading">
+            <h1>Über mich</h1>
+          </div>
+          <div class="about_grid">
+            <div class="big_card">
+              <p>
+                Hi, mein Name ist Justus und ich bin 22 Jahre alt. 
+                Ich wurde am 28.05.2004 in München geboren und habe hier auch mein gesamtes Leben verbracht. 
+                Mit 6 Jahren bin ich in die Schule gekommen wo ich mit ADHS diagnostiziert worden bin.
+                <br>
+                <br>
+                Mit 17 habe ich die Schule ohne Abschluss beendet und ich auf die Suche nach einer Auslbildung gemacht.
+                Meine erste Ausbildung zum Schlosser habe ich im dritten Lehrjahr abgebrochen, da ich mich in der Ausbildung nicht wohl gefühlt habe.
+                Nach einigem rum gesuche habe ich eine Ausbildung zum Einzelhandelskaufmann gefunden, die ich aktuell mache.
+                <br>
+                <br>
+                Noch zu Schulzeiten habe ich angefangen mich für das Programmieren zu interessieren.
+                Der erte Kontakt mit Programmiersprachen war in der 10. Klasse und schreit sich Python.
+                Das meiste wissen habe ich allerdings in HTML und CSS gesammelt.
+                <br>
+                <br>
+                In meiner Freizeit beschäftige ich mich allerdings nicht nur mit dem Programmieren, sondern auch mit Gaming und YouTube.
+                Und auch ehrenamtlich beschäftige ich mich aktiv.
+                Beispielsweise beschäfftige ich mich seit cirka 3 Jahren aktiv bei der Freiwilligen Feuewehr und arbeite von Zeit zu Zeit in einem Caffee in München.
+              </p>
+            </div>
+            <div class="foto_card">
+              <img src="Justus_Schlebach.jpg" id="justus_image_gallery" alt="Justus_Schlebach">
+              <img src="justus_feuerwehr.jpg" id="justus_image_feuerwehr" alt="Justus_Schlebach_Feuerwehr">
+            </div>
+          </div>
+        </section>
+        <section id="projekte">
+          <div class="heading">
+            <h1>Projekte & Referenzen</h1>
+          </div>
+          <div class="einführung">
+            <p>Hier sind einige meiner Projekte und Referenzen, die ich im Laufe der Zeit erstellt habe. 
+              Diese Projekte zeigen meine Fähigkeiten in Webentwicklung, Design und Programmierung.</p>
+          </div>
+          <div class="projekt_grid">
+            <div class="projekt" id="projekt1">
+              <h2>My Glow Pro</h2>
+              <p>
+                My Glow Pro ist das erste Projekt, welches ich im Webdesign umgesetzt habe.
+                Als Projekt für einen Freund war dies meine erste professionelle Umsetzung.
+              </p>
+              <div class="projekt-bilder">
+                <img class="projekt-bild-haupt" src="my_glow_pro1.png" alt="Hauptbild des Projekts">
+
+                <div class="projekt-bilder-unten">
+                  <img src="my_glow_pro2.png" alt="Erstes Detail des Projekts">
+                  <img src="my_glow_pro3.png" alt="Zweites Detail des Projekts">
+                </div>
+              </div>
+            </div>
+            <div class="projekt" id="projekt2">
+              <h2>Dein Projekt?</h2>
+              <p>Hier könnte deines zu sehen sein...</p>
+            </div>
+          </div>
+        </section>
+    </main>
+    <footer>
+      <div class="copyright">
+        <p>&copy; 2026 Justus Schlebach. Alle Rechte vorbehalten.</p>
+      </div>
+      <div class="legal-links">
+        <a href="impressum.html" id="impressum-link">Impressum</a> | <a href="datenschutz.html" id="datenschutz-link">Datenschutz</a>
+      </div>
+    </footer>
+
+    <dialog id="vip-dialog" class="vip-dialog">
+      <h2>VIP Access</h2>
+      <p>Bitte hier das dir gegebene Passwort einfügen. Du wirst im anschluss weiter geleitet.</p>
+      <div class="vip_grid">
+      <button id="vip-close" type="button">Schließen</button>
+      </div>
+    </dialog>
+
+    <script>
+      //Script zum Öffnen und Schließen des VIP Dialogs
+      const vipDialog = document.getElementById("vip-dialog");
+
+      document.getElementById("vip-open").addEventListener("click", () => {
+        vipDialog.showModal();
+      });
+
+      document.getElementById("vip-close").addEventListener("click", () => {
+        vipDialog.close();
+      });
+    </script>
 </body>
 </html>
