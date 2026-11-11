@@ -265,6 +265,17 @@
           text-align: center;
         }
 
+        .vip-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          margin-top: 1rem;
+        }
+
+        .vip_close {
+          margin-top: 1rem;
+        }
+
         /*.vip-dialog h2 p {
         }*/
         
@@ -338,19 +349,19 @@
                 Mit 6 Jahren bin ich in die Schule gekommen wo ich mit ADHS diagnostiziert worden bin.
                 <br>
                 <br>
-                Mit 17 habe ich die Schule ohne Abschluss beendet und ich auf die Suche nach einer Auslbildung gemacht.
+                Mit 17 habe ich die Schule ohne Abschluss beendet und mich auf die Suche nach einer Ausbildung gemacht.
                 Meine erste Ausbildung zum Schlosser habe ich im dritten Lehrjahr abgebrochen, da ich mich in der Ausbildung nicht wohl gefühlt habe.
-                Nach einigem rum gesuche habe ich eine Ausbildung zum Einzelhandelskaufmann gefunden, die ich aktuell mache.
+                Nach einiger Suche habe ich eine Ausbildung zum Einzelhandelskaufmann gefunden, die ich aktuell mache.
                 <br>
                 <br>
                 Noch zu Schulzeiten habe ich angefangen mich für das Programmieren zu interessieren.
-                Der erte Kontakt mit Programmiersprachen war in der 10. Klasse und schreit sich Python.
-                Das meiste wissen habe ich allerdings in HTML und CSS gesammelt.
+                Mein erster Kontakt mit Programmiersprachen war in der 10. Klasse mit Python.
+                Das meiste Wissen habe ich allerdings in HTML und CSS gesammelt.
                 <br>
                 <br>
                 In meiner Freizeit beschäftige ich mich allerdings nicht nur mit dem Programmieren, sondern auch mit Gaming und YouTube.
                 Und auch ehrenamtlich beschäftige ich mich aktiv.
-                Beispielsweise beschäfftige ich mich seit cirka 3 Jahren aktiv bei der Freiwilligen Feuewehr und arbeite von Zeit zu Zeit in einem Caffee in München.
+                Beispielsweise engagiere ich mich seit circa drei Jahren bei der Freiwilligen Feuerwehr und arbeite von Zeit zu Zeit in einem Café in München.
               </p>
             </div>
             <div class="foto_card">
@@ -395,28 +406,79 @@
         <p>&copy; 2026 Justus Schlebach. Alle Rechte vorbehalten.</p>
       </div>
       <div class="legal-links">
-        <a href="impressum.html" id="impressum-link">Impressum</a> | <a href="datenschutz.html" id="datenschutz-link">Datenschutz</a>
+        <span>Impressum (folgt)</span> | <span>Datenschutz (folgt)</span>
       </div>
     </footer>
 
     <dialog id="vip-dialog" class="vip-dialog">
       <h2>VIP Access</h2>
       <p>Bitte hier das dir gegebene Passwort einfügen. Du wirst im anschluss weiter geleitet.</p>
+      <form method="dialog" class="vip-form" id="vip-form">
+        <label for="vip-password">Zugangsschlüssel</label>
+        <input type="password" id="vip-password" name="vip-password" placeholder="Passwort eingeben" autocomplete="current-password" required>
+        <button type="submit">Einloggen</button>
+        <p id="vip-feedback" role="status" aria-live="polite"></p>
+      </form>
       <div class="vip_grid">
-      <button id="vip-close" type="button">Schließen</button>
+        <div class="vip_close">
+          <button id="vip-close" type="button">Schließen</button>
+        </div>
       </div>
     </dialog>
 
     <script>
       //Script zum Öffnen und Schließen des VIP Dialogs
       const vipDialog = document.getElementById("vip-dialog");
+      const vipForm = document.getElementById("vip-form");
+      const vipPassword = document.getElementById("vip-password");
+      const vipFeedback = document.getElementById("vip-feedback");
 
       document.getElementById("vip-open").addEventListener("click", () => {
+        vipFeedback.textContent = "";
         vipDialog.showModal();
+        vipPassword.focus();
       });
 
       document.getElementById("vip-close").addEventListener("click", () => {
         vipDialog.close();
+      });
+
+      async function sha256(message) {
+        const messageBytes = new TextEncoder().encode(message);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", messageBytes);
+        return Array.from(new Uint8Array(hashBuffer))
+          .map(byte => byte.toString(16).padStart(2, "0"))
+          .join("");
+      }
+
+      vipForm.addEventListener("submit", async event => {
+        event.preventDefault();
+        vipFeedback.textContent = "";
+
+        const userInput = vipPassword.value.trim();
+        if (!userInput) {
+          vipFeedback.textContent = "Bitte gib den Zugangsschlüssel ein.";
+          return;
+        }
+
+        const correctHash = "956abbcd3fbf4f6aff69daeaa74fd5559eb5015a00d43f635b4876b8a9ccc0bd";
+
+        try {
+          const userHash = await sha256(userInput);
+          if (userHash === correctHash) {
+            vipFeedback.textContent = "Zugang gewährt. Du wirst gleich weitergeleitet.";
+            setTimeout(() => {
+              window.location.href = "vip.html";
+            }, 5000);
+            return;
+          }
+
+          vipFeedback.textContent = "Falsches Passwort. Bitte versuche es erneut.";
+          vipPassword.select();
+        } catch (error) {
+          console.error("Der Zugangsschlüssel konnte nicht geprüft werden.", error);
+          vipFeedback.textContent = "Die Prüfung ist fehlgeschlagen. Bitte öffne die Seite über HTTPS und versuche es erneut.";
+        }
       });
     </script>
 </body>
