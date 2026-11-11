@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schlebach Digital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e293b;
+            max-width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .vip_button {
+          justify-items: left;
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        .vip_button button {
+          padding: 0.7rem 1rem;
+          background-color: #444;
+          color: #fff;
+          border: 0;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+        
+        .vip_button button:hover {
+          background-color: #555;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+        
+        nav a {
+            color: #fff;
+            padding: 1rem;
+            text-decoration: none;
+        }
+        
+        nav a:hover {
+            background-color: #555;
+        }
+
+        a {
+            color: #f1f5f9;
+            text-decoration: none;
+        }
+        
+        main {
+          flex: 1;
+          color: #f1f5f9;
+        }
+        
+        #home, #services, #contact {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            width: 100%;
+        }
+
+        .copyright {
+          text-align: left;
+          margin-left: 1rem;
+        }
+
+        .legal-links {
+          text-align: right;
+          margin-right: 1rem;
+        }
+
+        .vip-dialog {
+          color: #f1f5f9;
+          background-color: #333;
+          border: 4px solid #222;
+          border-radius: 8px;
+          padding: 2rem;
+          max-width: 500px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          text-align: center;
+        }
+
+        .vip-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          margin-top: 1rem;
+        }
+
+        .vip_close {
+          margin-top: 1rem;
+        }
+
+        /*.vip-dialog h2 p {
+        }*/
+        
+        .vip-dialog::backdrop {
+          background: rgba(0, 0, 0, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            header {
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+
+            .vip_button {
+                position: static;
+                display: flex;
+                justify-content: center;
+                margin-top: 0.75rem;
+                transform: none;
+            }
+
+            nav {
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                padding: 0.75rem;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 1rem;
+            }
+
+            .copyright,
+            .legal-links {
+                margin: 0;
+                text-align: center;
+            }
+
+            .vip-dialog {
+                width: calc(100% - 2rem);
+                max-width: 500px;
+                max-height: 90vh;
+                overflow-y: auto;
+                padding: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+          <h1>Schlebach Digital</h1>
+        </div>
+        <div class="vip_button" id="vip_button">
+          <button type="button" id="vip-open">VIP Access</button>
+        </div>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#über_mich">Über mich</a>
+        <a href="#projekte">Projekte</a>
+        <a href="#contact">Kontakt</a>
+    </nav>
+    <main>
+
+        <h1>Datenschutzerklärung</h1>
+
+        <h3>1. Datenschutz auf einen Blick</h3>
+        <h4>Allgemeine Hinweise</h4>
+        <p>
+            Die folgenden Hinweise geben einen einfachen Überblick darüber,
+            was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen.
+            Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
+        </p>
+        <h3>2. Verantwortliche Stelle</h3>
+        <p>Verantwortliche Stelle für die Datenverarbeitung auf dieser Webseite ist:</p>
+        <p>
+            Justus Schlebach<br>
+            Feldweg 1<br>
+            85244 Röhrmoos<br>
+            Deutschland<br>
+            E-Mail: <a href="mailto:justusschle@gmail.com">justusschle@gmail.com</a>
+        </p>
+        <h3>3. Datenerfassung auf unserer Webseite</h3>
+        <h4>Server-Log-Dateien</h4>
+        <p>
+            Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien,
+            die Ihr Browser automatisch an uns übermittelt. Dies sind:
+        </p>
+        <ul id="server_log_dateien">
+            <li>Browsertyp und Browserversion</li>
+            <li>Verwendetes Betriebssystem</li>
+            <li>Referrer URL (die zuvor besuchte Seite)</li>
+            <li>Hostname des zugreifenden Rechners</li>
+            <li>Uhrzeit der Serveranfrage</li>
+            <li>IP-Adresse</li>
+        </ul>
+        <p>
+            Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.
+            Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
+            Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien
+            Darstellung und der Optimierung seiner Website – hierzu müssen die Server-Log-Files erfasst werden.
+        </p>
+        <h4>Kontakt per E-Mail</h4>
+        <p>
+            Wenn Sie mich per E-Mail kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten
+            (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei mir gespeichert und verarbeitet.
+            Diese Daten gebe ich nicht ohne Ihre Einwilligung weiter.
+            Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO,
+            sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist.
+            In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO).
+        </p>
+        <h3>4. Ihre Rechte</h3>
+        <p>
+            Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten,
+            deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung oder Löschung dieser Daten.
+            Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese jederzeit für die Zukunft widerrufen.
+            <br>
+            <br>
+            Außerdem haben Sie das Recht, sich bei einer Aufsichtsbehörde zu beschweren
+            (z. B. der Landesbeauftragte für den Datenschutz des Bundeslandes, in dem du wohnst).
+            <br>
+            <br>
+            Wegen dieser und weiterer Fragen zum Thema Datenschutz können Sie sich jederzeit
+            an die oben im Impressum bzw. unter Punkt 2 genannte Adresse wenden.
+        </p>
+        <h3>5. SSL- bzw. TLS-Verschlüsselung</h3>
+        <p>
+            Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung.
+            Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
+            Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.
+        </p>
+
+    </main>
+    <footer>
+      <div class="copyright">
+        <p>&copy; 2026 Justus Schlebach. Alle Rechte vorbehalten.</p>
+      </div>
+      <div class="legal-links">
+        <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </footer>
+
+    <dialog id="vip-dialog" class="vip-dialog">
+      <h2>VIP Access</h2>
+      <p>Bitte hier das dir gegebene Passwort einfügen. Du wirst im anschluss weiter geleitet.</p>
+      <form method="dialog" class="vip-form" id="vip-form">
+        <label for="vip-password">Zugangsschlüssel</label>
+        <input type="password" id="vip-password" name="vip-password" placeholder="Passwort eingeben" autocomplete="current-password" required>
+        <button type="submit">Einloggen</button>
+        <p id="vip-feedback" role="status" aria-live="polite"></p>
+      </form>
+      <div class="vip_grid">
+        <div class="vip_close">
+          <button id="vip-close" type="button">Schließen</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script>
+      //Script zum Öffnen und Schließen des VIP Dialogs
+      const vipDialog = document.getElementById("vip-dialog");
+      const vipForm = document.getElementById("vip-form");
+      const vipPassword = document.getElementById("vip-password");
+      const vipFeedback = document.getElementById("vip-feedback");
+
+      document.getElementById("vip-open").addEventListener("click", () => {
+        vipFeedback.textContent = "";
+        vipDialog.showModal();
+        vipPassword.focus();
+      });
+
+      document.getElementById("vip-close").addEventListener("click", () => {
+        vipDialog.close();
+      });
+
+      async function sha256(message) {
+        const messageBytes = new TextEncoder().encode(message);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", messageBytes);
+        return Array.from(new Uint8Array(hashBuffer))
+          .map(byte => byte.toString(16).padStart(2, "0"))
+          .join("");
+      }
+
+      vipForm.addEventListener("submit", async event => {
+        event.preventDefault();
+        vipFeedback.textContent = "";
+
+        const userInput = vipPassword.value.trim();
+        if (!userInput) {
+          vipFeedback.textContent = "Bitte gib den Zugangsschlüssel ein.";
+          return;
+        }
+
+        const correctHash = "956abbcd3fbf4f6aff69daeaa74fd5559eb5015a00d43f635b4876b8a9ccc0bd";
+
+        try {
+          const userHash = await sha256(userInput);
+          if (userHash === correctHash) {
+            vipFeedback.textContent = "Zugang gewährt. Du wirst gleich weitergeleitet.";
+            setTimeout(() => {
+              window.location.href = "vip.html";
+            }, 5000);
+            return;
+          }
+
+          vipFeedback.textContent = "Falsches Passwort. Bitte versuche es erneut.";
+          vipPassword.select();
+        } catch (error) {
+          console.error("Der Zugangsschlüssel konnte nicht geprüft werden.", error);
+          vipFeedback.textContent = "Die Prüfung ist fehlgeschlagen. Bitte öffne die Seite über HTTPS und versuche es erneut.";
+        }
+      });
+    </script>
+</body>
+</html>
